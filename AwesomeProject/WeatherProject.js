@@ -13,6 +13,7 @@ import {
   ScrollView,
   View,
   Text,
+  ImageBackground,
   TextInput,
   StatusBar,
 } from 'react-native';
@@ -48,14 +49,25 @@ class WeatherProject extends Component{
     }
     return(
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Give a postal code {this.state.zip}
-        </Text>
-        {content}
-        <TextInput
+      <ImageBackground source={require('./flowers.png')} style={styles.image}>
+      <View style={styles.row}>
+        <View>
+          <Text style={styles.welcome}>
+            Give a postal code
+          </Text>
+        </View>
+        <View>
+          <TextInput
           style={styles.input}
           onSubmitEditing={this._handleTextChange}
         />
+        </View>
+      </View>
+        
+        {content}
+        
+      </ImageBackground>
+        
       </View>
     );
   }
@@ -73,13 +85,35 @@ const styles = StyleSheet.create({
     textAlign: "center",
     margin: 10
   },
+
   input: {
-    fontSize: 20,
-    borderWidth: 2,
-    padding: 2,
-    height: 40,
+    flex: 1,
+    flexBasis: 1,
     width: 100,
-    textAlign: "center"
+    height: 20,
+    fontSize: 20,
+    padding: 1,
+    textAlign: "center",
+    borderBottomColor: '#000', // Add this to specify bottom border color
+    borderBottomWidth: 2   
+  },
+    image: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center",
+    width: '100%',
+    height: '100%'
+  },
+  row: {
+    justifyContent: "center",
+    flexDirection: "row",
+    flexWrap: "nowrap",
+    alignItems: "flex-start",
+    padding:30
+
   }
+
+
+
 });
 export default WeatherProject;
